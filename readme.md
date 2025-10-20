@@ -1,4 +1,6 @@
-# Vefforritun 1, 2025: Verkefni 9, JavaScript #2
+# Vefforritun 1, 2025: Verkefni 9, JavaScript #3
+
+- [Fyrirlestur 10.4: Verkefni 9](https://youtu.be/oJIBdcTToaI)
 
 ## Markmið
 
