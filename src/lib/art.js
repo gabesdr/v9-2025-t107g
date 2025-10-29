@@ -1,4 +1,4 @@
-import { search } from "./api.js";
+import { search, getArtworkById } from "./api.js";
 import { el, empty } from "./elements.js";
 import { sleep } from "./helpers.js";
 
@@ -54,3 +54,36 @@ export function searchFrom(artSearcher) {
     artSearcher?.appendChild(formElement);
     artSearcher?.appendChild(resultElement);
 }
+
+
+/**
+ * Display Artwork by ID
+ * @param {HTMLElement} parent
+ * @param {string} id
+ */
+export async function displayArtwork(parent, id) {
+    const artworkData = await getArtworkById(id);
+    empty(parent);
+
+    if (!artworkData) {
+        parent.appendChild
+        return;;
+    }
+    const data = artworkData.data;
+    const title = data.title;
+    const artist = data.artist_title;
+    const date = data.date_display;
+    const imageId = data.image_id;
+    const imageUrl = `https://www.artic.edu/iiif/2/${imageId}/full/843,/0/default.jpg`;
+    const description = data.thumbnail?.alt_text || "No description available.";
+    const artworkElement = el(
+        "div",
+        {},
+        el("h2", {}, title),
+        el("p", {}, `Artist: ${artist}`),
+        el("p", {}, `Date: ${date}`),
+        el("img", { src: imageUrl, alt: description }),
+        el("p", {}, description)
+    );
+    parent.appendChild(artworkElement);
+}  
