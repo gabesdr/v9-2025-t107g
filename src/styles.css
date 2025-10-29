@@ -29,17 +29,17 @@ label {
 
 form {
   display: left;
-  gap: 1rem;
-  margin-bottom: 20px;
+  gap: 0.5rem;
+  margin-bottom: 10px;
 }
 
 button {
-  margin-left: 2rem;
   padding: 5px 15px;
+  margin-left: 1rem;
   background-color: #28a745;
   color: white;
   border: none;
-  border-radius: 15px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -47,27 +47,51 @@ button:hover {
   background-color: #218838;
 }
 
-.artwork-container h2 {
-  text-align: center;
+.artwork-container {
+  display: grid;
+  grid-template-columns: 450px 1fr;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  align-items: start;
+}
+
+.artwork-header {
+  grid-column: 2 / 3;
+  grid-row: 1;
+  text-align: left;
+  align-self: start;
   margin-bottom: 1rem;
-  color: #000000;
+}
+
+.artwork-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #000;
+}
+
+.artwork-details {
+  grid-column: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.25rem 0;
 }
 
 .artwork-image {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 2rem;
-  width: auto;
+  grid-column: 1 / 2;
+  grid-row: 1;
+  align-self: start;
+  width: 100%;
   height: auto;
   border-radius: 15px;
-  box-shadow: 0 2px 15px;
-  transition: transform 
+  box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease;
+  transform: translateY(-8px); /* small upward nudge */
 }
 
 .back-button {
-  display: inline-block;
-  margin-top: 2rem;
+  grid-column: 2 / 3;
   padding: 0.8rem 1.5rem;
   background-color: #28a745;
   color: white;
@@ -78,5 +102,4 @@ button:hover {
 
 .back-button:hover {
   background-color: #218838;
-  text-decoration: underline;
 }
