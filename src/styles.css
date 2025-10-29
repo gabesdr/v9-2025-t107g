@@ -13,7 +13,6 @@ html {
   box-sizing: inherit;
 }
 
-/* TODO einfalt viðmót */
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
@@ -23,26 +22,61 @@ body {
 }
 
 label {
-  display: block;
+  display: flex;
   margin-bottom: 10px;
   font-weight: bold;
 }
 
 form {
-  display: flex;
+  display: left;
   gap: 1rem;
   margin-bottom: 20px;
 }
 
 button {
-  padding: 10px 15px;
+  margin-left: 2rem;
+  padding: 5px 15px;
   background-color: #28a745;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 15px;
   cursor: pointer;
 }
 
 button:hover {
   background-color: #218838;
+}
+
+.artwork-container h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #000000;
+}
+
+.artwork-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  width: auto;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 2px 15px;
+  transition: transform 
+}
+
+.back-button {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #218838;
+  text-decoration: underline;
 }

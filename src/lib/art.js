@@ -6,7 +6,7 @@ import { sleep } from "./helpers.js";
  * @param {HTMLElement} artSearcher Form Submit Event
  */
 export function searchFrom(artSearcher) {
-    const statusElement = el("p", {}, "Sláðu inn leitarorð til að byrja.");
+    const statusElement = el("p", {class: 'form-description' }, "Sláðu inn leitarorð til að byrja.");
     const resultsElement = el("ul");
     const resultElement = el("div", {}, statusElement, resultsElement);
 
@@ -21,18 +21,25 @@ export function searchFrom(artSearcher) {
         empty(resultsElement);
 
         const query = inputElement.value;
+
+        if (!query.trim()) {
+            statusElement.textContent = 'Leitarstrengur má ekki vera tómur.';
+            return;
+    }
         statusElement.textContent = `Leita að ${query}...`;
 
         await sleep(0.5);
         const results = await search(query);
+        
         console.log("niðurstöður!", results);
 
-        statusElement.textContent = `Leitarniðurstöður fyrir ${query}:`;
+        statusElement.textContent = `Leitarniðurstöður fyrir ${query} ...`;
 
-        if (!results) {
-            statusElement.textContent = `Villa við leit!`;
+        if (!results || !results.data || results.data.length === 0) {
+            statusElement.textContent = 'Engar niðurstöður fundust';
             return;
         }
+        
         const data = results.data;
 
         for (const item of data) {
@@ -55,7 +62,6 @@ export function searchFrom(artSearcher) {
     artSearcher?.appendChild(resultElement);
 }
 
-
 /**
  * Display Artwork by ID
  * @param {HTMLElement} parent
@@ -67,8 +73,9 @@ export async function displayArtwork(parent, id) {
 
     if (!artworkData) {
         parent.appendChild
-        return;;
+        return;
     }
+
     const data = artworkData.data;
     const title = data.title;
     const artist = data.artist_title;
@@ -76,14 +83,30 @@ export async function displayArtwork(parent, id) {
     const imageId = data.image_id;
     const imageUrl = `https://www.artic.edu/iiif/2/${imageId}/full/843,/0/default.jpg`;
     const description = data.thumbnail?.alt_text || "No description available.";
+    
     const artworkElement = el(
         "div",
-        {},
-        el("h2", {}, title),
-        el("p", {}, `Artist: ${artist}`),
-        el("p", {}, `Date: ${date}`),
-        el("img", { src: imageUrl, alt: description }),
-        el("p", {}, description)
+        { class: 'artwork-container' },
+        el("div", { class: 'artwork-header' },
+            el("h2", {}, title)
+        ),
+        imageId ? el("img", { 
+            src: imageUrl, 
+            alt: description,
+            class: 'artwork-image'
+        }) : null,
+        el("div", { class: 'artwork-details' },
+            el("p", { class: 'artist' }, `Listamaður: ${artist || 'Óþekktur'}`),
+            el("p", { class: 'date' }, `Dagsetning: ${date || 'Óþekkt'}`),
+            el("div", { class: 'artwork-description' },
+                el("p", {}, description)
+            )
+        ),
+        el("a", { 
+            href: '/',
+            class: 'back-button'
+        }, '← Til baka í leit')
     );
+
     parent.appendChild(artworkElement);
 }  
