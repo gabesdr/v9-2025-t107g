@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "parcel",
-    "dev": "parcel",
+    "dev": "parcel --no-cache",
     "build": "parcel build",
     "lint": "eslint src"
   },
