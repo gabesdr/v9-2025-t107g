@@ -47,7 +47,7 @@ export function searchFrom(artSearcher) {
     const formElement = el(
         "form",
         { submit: onSubmitHandler },
-        el("label", {}, "Leitarorð"),
+        el("label", {}, "Leita að listaverki: "),
         inputElement,
         el("button", { type: "submit" }, "Leita")
     );
