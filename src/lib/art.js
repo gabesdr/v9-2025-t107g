@@ -3,7 +3,7 @@ import { el, empty } from "./elements.js";
 import { sleep } from "./helpers.js";
 
 /**
- * @param {HTMLElement} artSearcher Form Submit Event
+ * @param {HTMLElement} artSearcher Form Submit Event úr gefið HTML
  */
 export function searchFrom(artSearcher) {
     const statusElement = el("p", {class: 'form-description' }, "Sláðu inn leitarorð til að byrja.");
@@ -50,7 +50,7 @@ export function searchFrom(artSearcher) {
             resultsElement.appendChild(resultItem);
         }
     }
-
+    // Submit handler method
     const formElement = el(
         "form",
         { submit: onSubmitHandler },
