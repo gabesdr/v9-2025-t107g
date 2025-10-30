@@ -144,4 +144,4 @@ Skilaboð skulu innihalda:
 | 0.3    | JS fínpússað |
 | 0.4    | Meira JS |
 | 0.5    | CSS pússað saman, viðmót ekki sett upp rétt, textann er ekki aligned |
-| 0.6    | CSS fínpússað, mjög sáttur með útlitið |
+| 0.6    | CSS fínpússað, mjög sáttur með útlitið, bætti við comments |
